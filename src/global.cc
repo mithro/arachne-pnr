@@ -483,7 +483,7 @@ Promoter::promote(bool do_promote)
         ++n_promoted;
         ++gc_promoted[gc];
 
-        Instance *gb_inst = top->add_instance(models.gb);
+        Instance *gb_inst = top->add_instance(models.gb_io);
         Net *t = top->add_net(n);
 
         int n_conn = 0;
@@ -506,7 +506,7 @@ Promoter::promote(bool do_promote)
               }
           }
 
-        gb_inst->find_port("USER_SIGNAL_TO_GLOBAL_BUFFER")->connect(n);
+        gb_inst->find_port("PACKAGE_PIN")->connect(n);
         gb_inst->find_port("GLOBAL_BUFFER_OUTPUT")->connect(t);
 
         ++n_global;
